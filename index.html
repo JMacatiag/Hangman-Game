@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Rushified: The Unofficial Rush Hangman Game</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	
@@ -28,17 +28,26 @@
     <div class="col-md-2">
     </div>
     <div class="col-md-4 leftPlayArea playArea">
-      
+      <div class="row">
+        <div class="col-md-12">
+          <img class="albumArt" src="assets/images/hangman.jpg">
+          <div class="leftPanelText">Now Playing</div>
+          <div class="leftPanelText"><span id="songTitle">2112 Overture/The Temple of Syrinx</span></div>
+          <div class="leftPanelText"><span id="album">2112</span></div>
+        </div>
+      </div>
     </div>
     <div class="col-md-4 rightPlayArea playArea">
       <div> Instructions </div>
       <div> Press any key to begin the Rushification! </div>
       <div id="gameboard">CLICK ME</div>
-    </div>
+      <div><span>Number of wins: </span><span id="winsNumber">0</span></div>
+        <script src="assets/javascript/game.js"></script>
+    </dv>
     <div class="col-md-2">
     </div>
   </div>
   
-  <script src="assets/javascript/game.js"></script>
+
 </body>
 </html>

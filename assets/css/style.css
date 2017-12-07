@@ -28,3 +28,15 @@ body{
 .rightPlayArea{
 	margin-left: 5px;
 }
+
+.albumArt {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    width: 60%;
+}
+
+.leftPanelText {
+	text-align: center;
+
+}
