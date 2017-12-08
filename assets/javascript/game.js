@@ -6,10 +6,23 @@ var blankWord=[]
 var userGuess;
 var userGuessCaps;
 
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+    x.play(); 
+} 
+
+function pauseAudio() { 
+    x.pause(); 
+} 
+
+// chooses random long from the song list
 var randomWord=songList[Math.floor(Math.random()*songList.length)];
 
+// converts the sing into letters and puts letters into an array
 var wordLetter = randomWord.split("");
 
+// creates the blank output
 for (i=0; i<wordLetter.length; i++){
 	if (wordLetter[i] === "-"){
 			blankWord.push("-");
@@ -18,39 +31,34 @@ for (i=0; i<wordLetter.length; i++){
 		blankWord.push("_");
 	}
 }
-
 document.getElementById("currentWord").innerHTML= blankWord;
 
 
-
-	document.onkeyup = function (event){
-		userGuess=event.key;
-		userGuessCaps=userGuess.toUpperCase();
-		usedLetters.push(userGuessCaps);
-		console.log(usedLetters);
-		document.getElementById("dislayUsedLetters").innerHTML=usedLetters;
+// checks user input to see if it matches the letters of the current song
+document.onkeyup = function (event){
+	userGuess=event.key;
+	userGuessCaps=userGuess.toUpperCase();
+	usedLetters.push(userGuessCaps);
+	document.getElementById("dislayUsedLetters").innerHTML=usedLetters;
+	guessesRemaining-=1;
+	console.log(guessesRemaining);
+	document.getElementById("guessesRemaining").innerHTML=guessesRemaining;
 		
-		
-
-			for (j=0; j<randomWord.length; j++){
+		for (j=0; j<randomWord.length; j++){
 			
-				if (userGuessCaps===randomWord[j]){
-					blankWord[j]=randomWord[j]
-					document.getElementById("currentWord").innerHTML=blankWord;
-					
-				}
-				else {
+			if (userGuessCaps===randomWord[j]){
+				blankWord[j]=randomWord[j]
+				document.getElementById("currentWord").innerHTML=blankWord;
 
-
-				}
+				
+			}
+			else {
 
 			}
 
+		}
 
-
-
-
-	}
+}
 
 
 
