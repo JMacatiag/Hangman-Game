@@ -1,3 +1,4 @@
+// Variable declaration
 var songList = ["TOM-SAWYER", "RED-BARCHETTA", "THE-TWILIGHT-ZONE", "YYZ", "LIMELIGHT", "MAKING-MEMORIES", "CROSSROADS" ];
 var usedLetters=[];
 var numberOfWins=0;
@@ -5,15 +6,14 @@ var guessesRemaining=12;
 var blankWord=[]
 var userGuess;
 var userGuessCaps;
+var previousIterationOfWord;
 
 
-
+// Music playback
 var x = document.getElementById("myAudio"); 
-
 function playAudio() { 
     x.play(); 
 } 
-
 function pauseAudio() { 
     x.pause(); 
 } 
@@ -23,7 +23,7 @@ var songSelection = [Math.floor(Math.random()*songList.length)]
 var randomWord=songList[songSelection];
 
 
-// converts the sing into letters and puts letters into an array
+// converts the song into letters and puts letters into an array
 var wordLetter = randomWord.split("");
 
 
@@ -36,7 +36,6 @@ for (i=0; i<wordLetter.length; i++){
 		blankWord.push("_");
 	}
 }
-
 document.getElementById("currentWord").innerHTML= blankWord;
 
 
@@ -55,14 +54,23 @@ document.onkeyup = function (event){
 				blankWord[j]=randomWord[j]
 				document.getElementById("currentWord").innerHTML=blankWord;
 				wordConstruction = blankWord.join("");
+				previousIterationOfWord=blankWord.join("");
 			}
+
 		}
 
-		if (wordConstruction===randomWord){
+		// Win condition
+		if (wordConstruction!==previousIterationOfWord){
+			guessesRemaining-=1;
+			document.getElementById("guessesNumber").innerHTML=guessesRemaining;
+			console.log(guessesRemaining);
+		}
+		else if (wordConstruction===randomWord){
 			numberOfWins+=1;
 			document.getElementById("winsNumber").innerHTML=numberOfWins;
-			console.log(songSelection);
+			
 
+			// changes attributes of left content box to match conpleted puzzle
 			if (songSelection==0){
 				document.getElementById("songTitle").innerHTML="Tom Sawyer";
 				document.getElementById("album").innerHTML="Moving Pictures";
@@ -79,7 +87,7 @@ document.onkeyup = function (event){
 				document.getElementById("myAudio"); myAudio.src='assets/music/thetwilighzone.mp3'; myAudio.load(); playAudio();
 				document.getElementById("songTitle").innerHTML="The Twilight Zone";
 				document.getElementById("album").innerHTML="2112";
-				document.getElementById("albumArt").src='assets/images/2112.jpg';
+				document.getElementById("albumArt").src='assets/images/2112.png';
 			}
 			else if (songSelection==3){
 				document.getElementById("myAudio"); myAudio.src='assets/music/yyz.mp3'; myAudio.load(); playAudio();
