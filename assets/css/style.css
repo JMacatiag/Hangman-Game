@@ -29,7 +29,7 @@ body{
 	margin-left: 5px;
 }
 
-.albumArt {
+#albumArt {
     display: block;
     margin: auto;
     margin-top: 20px;
