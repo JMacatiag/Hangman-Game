@@ -8,6 +8,9 @@ var userGuess;
 var userGuessCaps;
 var previousIterationOfWord;
 var guessCounter=0;
+var wordLetter;
+var randomWord;
+var songSelection
 
 
 // Music playback
@@ -19,28 +22,53 @@ function pauseAudio() {
     x.pause(); 
 } 
 
-// chooses random long from the song list
-var songSelection = [Math.floor(Math.random()*songList.length)]
-var randomWord=songList[songSelection];
+function clearVar() {
+	usedLetters=[];
+	guessesRemaining=12;
+	blankWord=[]
+	userGuess;
+	userGuessCaps;
+	previousIterationOfWord;
+	guessCounter=0;
+	wordLetter;
+	randomWord;
+	document.getElementById("currentWord").innerHTML="";
+	document.getElementById("dislayUsedLetters").innerHTML=usedLetters;
 
-
-// converts the song into letters and puts letters into an array
-var wordLetter = randomWord.split("");
-
-
-// creates the blank output
-for (i=0; i<wordLetter.length; i++){
-	if (wordLetter[i] === "-"){
-			blankWord.push("-");
-	}
-	else {
-		blankWord.push("_");
-	}
 }
-document.getElementById("currentWord").innerHTML= blankWord;
+
+// chooses random song from the song list
+function setUp(){
+	songSelection = [Math.floor(Math.random()*songList.length)]
+	randomWord=songList[songSelection];
+
+
+
+	// converts the song into letters and puts letters into an array
+
+	var wordLetter = randomWord.split("");
+
+
+
+	// creates the blank output
+
+	for (i=0; i<wordLetter.length; i++){
+		if (wordLetter[i] === "-"){
+				blankWord.push("-");
+		}
+		else {
+			blankWord.push("_");
+		}
+	}
+
+
+	document.getElementById("currentWord").innerHTML= blankWord;
+}
+
 
 
 // checks user input to see if it matches the letters of the current song
+function runGame() {
 document.onkeyup = function (event){
 	userGuess=event.key;
 	userGuessCaps=userGuess.toUpperCase();
@@ -73,15 +101,16 @@ document.onkeyup = function (event){
 					document.getElementById("guessesNumber").innerHTML=guessesRemaining;
 				}
 
-		// determine win condition
+		// determine game over
 		if (guessesRemaining<1){
 			document.getElementById("gameOver").innerHTML="GAME OVER!";
+			 alert("GAMEOVER!");
+			 location.reload();
 		}
+		// win condition
 		 if (wordConstruction===randomWord){
 			numberOfWins+=1;
-			document.getElementById("winsNumber").innerHTML=numberOfWins;
 			
-
 			// changes attributes of left content box to match conpleted puzzle
 			if (songSelection==0){
 				document.getElementById("songTitle").innerHTML="Tom Sawyer";
@@ -124,25 +153,31 @@ document.onkeyup = function (event){
 				document.getElementById("songTitle").innerHTML="Crossroads";
 				document.getElementById("album").innerHTML="Feedback";
 				document.getElementById("albumArt").src='assets/images/feedback.jpg';
-			}		
+			}	
+
+			// start next work
+			document.getElementById("winsNumber").innerHTML=numberOfWins;
+			clearVar();
+			setUp();
+			runGame();
+
 			
 
 		}
 
 }
+}
 
 
+// Game start on page load
+document.addEventListener("load", setUp());
+document.addEventListener("load", runGame());
 
 	
 
 
 
 
-document.getElementById("gameboard").addEventListener("click", myFunction);
-
-function myFunction() {
-    document.getElementById("gameboard").innerHTML = "YOU CLICKED ME!";
-}
 
 
 

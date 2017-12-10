@@ -29,6 +29,14 @@ body{
 	margin-left: 5px;
 }
 
+.format{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+
 #albumArt {
     display: block;
     margin: auto;
