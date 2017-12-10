@@ -7,6 +7,7 @@ var blankWord=[]
 var userGuess;
 var userGuessCaps;
 var previousIterationOfWord;
+var guessCounter=0;
 
 
 // Music playback
@@ -47,6 +48,7 @@ document.onkeyup = function (event){
 	document.getElementById("dislayUsedLetters").innerHTML=usedLetters;
 	document.getElementById("guessesNumber").innerHTML=guessesRemaining;
 	var wordConstruction;
+	guessCounter=0;
 		
 		for (j=0; j<randomWord.length; j++){
 			
@@ -55,17 +57,27 @@ document.onkeyup = function (event){
 				document.getElementById("currentWord").innerHTML=blankWord;
 				wordConstruction = blankWord.join("");
 				previousIterationOfWord=blankWord.join("");
+				
 			}
 
 		}
 
-		// Win condition
-		if (wordConstruction!==previousIterationOfWord){
-			guessesRemaining-=1;
-			document.getElementById("guessesNumber").innerHTML=guessesRemaining;
-			console.log(guessesRemaining);
+		// On wrong guess remove one remaining
+		for (k=0; k<randomWord.length; k++){
+			if (userGuessCaps==blankWord[k]){
+				guessCounter+=1;
+			}
 		}
-		else if (wordConstruction===randomWord){
+		if(guessCounter===0){
+					guessesRemaining-=1;
+					document.getElementById("guessesNumber").innerHTML=guessesRemaining;
+				}
+
+		// determine win condition
+		if (guessesRemaining<1){
+			document.getElementById("gameOver").innerHTML="GAME OVER!";
+		}
+		 if (wordConstruction===randomWord){
 			numberOfWins+=1;
 			document.getElementById("winsNumber").innerHTML=numberOfWins;
 			
@@ -116,7 +128,7 @@ document.onkeyup = function (event){
 			
 
 		}
- 
+
 }
 
 
