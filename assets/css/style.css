@@ -1,7 +1,7 @@
 body{
   background-color:black;
   color: white;
-
+  background-image: url("../images/wallpaper.jpg");
 }
 
 .jumbotron {
@@ -19,6 +19,7 @@ body{
 	border-width: 5px;
 	border-color: white;
 	border-style: dashed;
+	background-color: rgba(0, 0, 0, 0.7);
 }
 
 .leftPlayArea{
