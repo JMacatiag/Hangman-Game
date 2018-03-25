@@ -10,7 +10,7 @@ var previousIterationOfWord;
 var guessCounter=0;
 var wordLetter;
 var randomWord;
-var songSelection
+var songSelection;
 
 
 // Music playback
@@ -157,8 +157,10 @@ document.onkeyup = function (event){
 
 			// start next work
 			document.getElementById("winsNumber").innerHTML=numberOfWins;
+
 			clearVar();
 			setUp();
+			
 			runGame();
 
 			
